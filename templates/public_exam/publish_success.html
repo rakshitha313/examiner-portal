@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Published</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Inter',sans-serif;
+            min-height:100vh;
+            background: linear-gradient(135deg, #0f172a, #1e293b, #312e81);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:30px 15px;
+        }
+
+        .container{
+            width:100%;
+            max-width:800px;
+            background: rgba(255,255,255,0.08);
+            border:1px solid rgba(255,255,255,0.12);
+            border-radius:30px;
+            backdrop-filter: blur(18px);
+            box-shadow:0 25px 60px rgba(0,0,0,0.35);
+            padding:30px;
+        }
+
+        .card{
+            background:white;
+            border-radius:22px;
+            padding:30px;
+            text-align:center;
+        }
+
+        .icon{
+            width:70px;
+            height:70px;
+            border-radius:50%;
+            background: linear-gradient(135deg,#10b981,#059669);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            margin:0 auto 18px;
+            font-size:30px;
+            color:white;
+        }
+
+        h2{
+            font-size:26px;
+            font-weight:800;
+            color:#0f172a;
+            margin-bottom:10px;
+        }
+
+        .subtitle{
+            color:#64748b;
+            font-size:14px;
+            margin-bottom:18px;
+        }
+
+        .exam-name{
+            font-weight:700;
+            color:#1e293b;
+            margin-bottom:10px;
+        }
+
+        .link-box{
+            background:#f1f5f9;
+            border:1px solid #e2e8f0;
+            padding:14px;
+            border-radius:14px;
+            margin:20px 0;
+            word-break:break-all;
+            font-size:14px;
+        }
+
+        .actions{
+            display:flex;
+            gap:12px;
+            justify-content:center;
+            flex-wrap:wrap;
+            margin-top:10px;
+        }
+
+        .btn{
+            display:inline-block;
+            padding:12px 18px;
+            border-radius:14px;
+            font-weight:700;
+            text-decoration:none;
+            transition:0.25s ease;
+        }
+
+        .btn-primary{
+            background: linear-gradient(135deg,#4f46e5,#7c3aed);
+            color:white;
+            box-shadow:0 12px 24px rgba(79,70,229,0.24);
+        }
+
+        .btn-primary:hover{
+            transform:translateY(-2px);
+        }
+
+        .btn-green{
+            background: linear-gradient(135deg,#059669,#10b981);
+            color:white;
+            box-shadow:0 12px 24px rgba(16,185,129,0.24);
+        }
+
+        .btn-green:hover{
+            transform:translateY(-2px);
+        }
+
+        .btn-secondary{
+            background:#e2e8f0;
+            color:#0f172a;
+        }
+
+        .btn-secondary:hover{
+            background:#cbd5e1;
+        }
+
+        .copy-btn{
+            margin-top:10px;
+            background:#0f172a;
+            color:white;
+            border:none;
+            padding:10px 16px;
+            border-radius:10px;
+            cursor:pointer;
+            font-size:13px;
+        }
+
+        .copy-btn:hover{
+            background:#1e293b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="icon">✔</div>
+
+        <h2>Exam Published Successfully</h2>
+
+        <div class="subtitle">
+            Your exam is now live and ready to be shared with candidates.
+        </div>
+
+        <div class="exam-name">
+            {{ exam.title }}
+        </div>
+
+        <div class="link-box" id="examLink">
+            {{ exam_link }}
+        </div>
+
+        <button class="copy-btn" onclick="copyLink()">Copy Link</button>
+
+        <div class="actions">
+            <a href="{{ exam_link }}" target="_blank" class="btn btn-green">Open Exam</a>
+            <a href="/dashboard/" class="btn btn-primary">Go to Dashboard</a>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function copyLink(){
+    let text = document.getElementById("examLink").innerText;
+    navigator.clipboard.writeText(text);
+    alert("Link copied!");
+}
+</script>
+
+</body>
+</html>

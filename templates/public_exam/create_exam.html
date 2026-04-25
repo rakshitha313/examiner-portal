@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Exam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Inter',sans-serif;
+            min-height:100vh;
+            background: linear-gradient(135deg, #0f172a, #1e293b, #312e81);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:30px 15px;
+        }
+
+        .container{
+            width:100%;
+            max-width:1000px;
+            background: rgba(255,255,255,0.08);
+            border:1px solid rgba(255,255,255,0.12);
+            border-radius:28px;
+            backdrop-filter: blur(18px);
+            box-shadow:0 25px 60px rgba(0,0,0,0.35);
+            padding:30px;
+        }
+
+        .top{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:20px;
+            flex-wrap:wrap;
+        }
+
+        h2{
+            color:white;
+            font-size:28px;
+            font-weight:800;
+        }
+
+        .btn{
+            padding:10px 16px;
+            border-radius:12px;
+            text-decoration:none;
+            font-weight:600;
+            background: rgba(255,255,255,0.1);
+            color:white;
+            border:1px solid rgba(255,255,255,0.15);
+        }
+
+        .btn:hover{
+            background: rgba(255,255,255,0.2);
+        }
+
+        .form-box{
+            background:white;
+            border-radius:20px;
+            padding:30px;
+        }
+
+        form p{
+            margin-bottom:16px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:6px;
+            font-weight:600;
+            color:#334155;
+        }
+
+        input, textarea, select{
+            width:100%;
+            padding:12px;
+            border:1px solid #cbd5e1;
+            border-radius:12px;
+            outline:none;
+            transition:0.2s;
+            background:#f8fafc;
+        }
+
+        input:focus, textarea:focus, select:focus{
+            border-color:#4f46e5;
+            background:white;
+            box-shadow:0 0 0 3px rgba(79,70,229,0.2);
+        }
+
+        .submit-btn{
+            width:100%;
+            margin-top:10px;
+            padding:14px;
+            border:none;
+            border-radius:14px;
+            background: linear-gradient(135deg,#4f46e5,#7c3aed);
+            color:white;
+            font-weight:700;
+            cursor:pointer;
+            transition:0.2s;
+            box-shadow:0 12px 24px rgba(79,70,229,0.25);
+        }
+
+        .submit-btn:hover{
+            transform:translateY(-2px);
+        }
+
+        @media(max-width:768px){
+            .container{
+                padding:20px;
+            }
+
+            .form-box{
+                padding:20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="top">
+        <h2>Create Exam</h2>
+        <a href="/dashboard/" class="btn">← Back</a>
+    </div>
+
+    <div class="form-box">
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="submit-btn">Create Exam</button>
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

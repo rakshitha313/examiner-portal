@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exam Not Available</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg,#0f172a,#1e293b,#312e81);
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:white;
+            padding:20px;
+        }
+        .box{
+            max-width:600px;
+            background:rgba(255,255,255,0.1);
+            padding:30px;
+            border-radius:20px;
+            text-align:center;
+            border:1px solid rgba(255,255,255,0.15);
+        }
+        h2{
+            margin-bottom:15px;
+        }
+        p{
+            color:rgba(255,255,255,0.8);
+            line-height:1.6;
+        }
+        .time{
+            margin-top:20px;
+            background:rgba(255,255,255,0.08);
+            padding:15px;
+            border-radius:14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>{{ message }}</h2>
+
+    <p><strong>Exam:</strong> {{ exam.title }}</p>
+
+    <div class="time">
+        <p><strong>Start Time:</strong> {{ exam.start_time }}</p>
+        <p><strong>End Time:</strong> {{ exam.end_time }}</p>
+    </div>
+</div>
+
+</body>
+</html>

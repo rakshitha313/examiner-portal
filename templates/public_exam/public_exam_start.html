@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ exam.title }}</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    font-family:'Inter',sans-serif;
+    background: linear-gradient(135deg,#0f172a,#1e293b,#312e81);
+    color:white;
+    padding:20px;
+}
+
+/* HEADER */
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+}
+
+.title{
+    font-size:22px;
+    font-weight:800;
+}
+
+.timer{
+    background:#ef4444;
+    padding:10px 14px;
+    border-radius:12px;
+    font-weight:700;
+}
+
+/* PROGRESS */
+.progress-bar{
+    width:100%;
+    height:8px;
+    background:rgba(255,255,255,0.2);
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#10b981;
+    border-radius:10px;
+}
+
+/* CONTAINER */
+.container{
+    max-width:900px;
+    margin:auto;
+}
+
+/* QUESTION CARD */
+.card{
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:18px;
+    backdrop-filter:blur(12px);
+}
+
+.question{
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.option{
+    margin-bottom:8px;
+    display:block;
+    padding:10px;
+    border-radius:10px;
+    background:rgba(255,255,255,0.05);
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.option:hover{
+    background:rgba(255,255,255,0.12);
+}
+
+/* BUTTON */
+.submit-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+    font-size:16px;
+    margin-top:10px;
+}
+
+.submit-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* MOBILE */
+@media(max-width:600px){
+    .title{font-size:18px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <div class="title">{{ exam.title }}</div>
+        <div class="timer" id="timer">Loading...</div>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+    </div>
+
+    <form method="POST" action="{% url 'submit-public-exam' exam.exam_code %}">
+        {% csrf_token %}
+
+        {% for q in questions %}
+        <div class="card">
+            <div class="question">
+                Q{{ forloop.counter }}. {{ q.question }}
+            </div>
+
+            <label class="option">
+                <input type="radio" name="{{ q.id }}" value="option1" onchange="updateProgress()"> {{ q.option1 }}
+            </label>
+
+            <label class="option">
+                <input type="radio" name="{{ q.id }}" value="option2" onchange="updateProgress()"> {{ q.option2 }}
+            </label>
+
+            <label class="option">
+                <input type="radio" name="{{ q.id }}" value="option3" onchange="updateProgress()"> {{ q.option3 }}
+            </label>
+
+            <label class="option">
+                <input type="radio" name="{{ q.id }}" value="option4" onchange="updateProgress()"> {{ q.option4 }}
+            </label>
+        </div>
+        {% empty %}
+            <p>No questions found</p>
+        {% endfor %}
+
+        <button type="submit" class="submit-btn">Submit Exam</button>
+    </form>
+
+</div>
+
+<script>
+/* TIMER */
+let minutes = {{ exam.duration }};
+let totalSeconds = minutes * 60;
+
+function updateTimer(){
+    let m = Math.floor(totalSeconds / 60);
+    let s = totalSeconds % 60;
+
+    document.getElementById("timer").innerText =
+        m + ":" + (s < 10 ? "0" + s : s);
+
+    if(totalSeconds <= 0){
+        document.forms[0].submit();
+    }
+
+    totalSeconds--;
+}
+
+setInterval(updateTimer,1000);
+
+/* PROGRESS */
+function updateProgress(){
+    let total = {{ questions|length }};
+    let answered = document.querySelectorAll('input[type="radio"]:checked').length;
+    let percent = (answered / total) * 100;
+    document.getElementById("progress").style.width = percent + "%";
+}
+</script>
+
+</body>
+</html>

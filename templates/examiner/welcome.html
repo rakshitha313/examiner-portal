@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome | Examiner Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    background:
+        radial-gradient(circle at top left, rgba(147,51,234,0.35), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(14,165,233,0.45), transparent 35%),
+        linear-gradient(135deg,#020617,#1e3a8a,#3b82f6);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:30px;
+}
+
+/* LAYOUT */
+.container{
+    max-width:1100px;
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+}
+
+/* LEFT SIDE */
+.left h1{
+    font-size:56px;
+    line-height:1.1;
+    font-weight:800;
+    margin-bottom:18px;
+    text-shadow:0 0 30px rgba(96,165,250,0.6);
+}
+
+.left p{
+    font-size:17px;
+    color:rgba(255,255,255,0.85);
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+/* BUTTONS */
+.actions{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:14px 24px;
+    border-radius:18px;
+    text-decoration:none;
+    font-weight:800;
+    transition:0.3s ease;
+}
+
+.btn-primary{
+    background:linear-gradient(135deg,#6366f1,#9333ea);
+    color:white;
+    box-shadow:0 15px 40px rgba(99,102,241,0.4);
+}
+
+.btn-secondary{
+    background:rgba(255,255,255,0.12);
+    color:white;
+    border:1px solid rgba(255,255,255,0.2);
+}
+
+/* HOVER EFFECT */
+.btn:hover{
+    transform:translateY(-4px) scale(1.03);
+}
+
+/* RIGHT CARD */
+.card{
+    background:rgba(255,255,255,0.14);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:30px;
+    padding:36px;
+    backdrop-filter:blur(20px);
+    box-shadow:0 30px 80px rgba(15,23,42,0.45);
+}
+
+.card h2{
+    font-size:30px;
+    margin-bottom:24px;
+}
+
+/* FEATURES */
+.feature{
+    padding:18px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.12);
+    margin-bottom:16px;
+    border:1px solid rgba(255,255,255,0.15);
+    transition:0.25s ease;
+}
+
+.feature:hover{
+    transform:translateX(6px);
+    background:rgba(255,255,255,0.18);
+}
+
+.feature strong{
+    display:block;
+    margin-bottom:6px;
+    font-size:16px;
+}
+
+.feature span{
+    color:rgba(255,255,255,0.8);
+    font-size:14px;
+}
+.logo{
+    position:absolute;
+    top:28px;
+    left:35px;
+    font-size:22px;
+    font-weight:800;
+}
+
+.logo span{
+    color:#93c5fd;
+}
+
+.container{
+    animation: fadeUp 0.9s ease;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* RESPONSIVE */
+@media(max-width:850px){
+    body{
+        padding:20px;
+        align-items:flex-start;
+    }
+
+    .logo{
+        position:static;
+        text-align:center;
+        margin-bottom:25px;
+        width:100%;
+    }
+
+    .container{
+        grid-template-columns:1fr;
+        gap:25px;
+        margin-top:10px;
+    }
+
+    .left{
+        text-align:center;
+    }
+
+    .left h1{
+        font-size:36px;
+    }
+
+    .left p{
+        font-size:15px;
+        line-height:1.6;
+    }
+
+    .actions{
+        justify-content:center;
+    }
+
+    .card{
+        padding:24px;
+    }
+}
+
+@media(max-width:480px){
+    .left h1{
+        font-size:30px;
+    }
+
+    .btn{
+        width:100%;
+        text-align:center;
+    }
+
+    .actions{
+        flex-direction:column;
+    }
+
+    .card h2{
+        font-size:24px;
+    }
+
+    .feature{
+        padding:14px;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="logo">Examiner<span>Portal</span></div>
+<div class="container">
+
+    <div class="left">
+        <h1>Welcome to Examiner Portal</h1>
+        <p>
+            Create exams, add questions, publish exam links, and allow candidates
+            to attend exams using their name, email, and phone number.
+        </p>
+
+        <div class="actions">
+            <a href="/examiner/signup/" class="btn btn-primary">Get Started</a>
+            <a href="/examiner/login/" class="btn btn-secondary">Login</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>What you can do</h2>
+
+        <div class="feature">
+            <strong>📝 Create Exams</strong>
+            <span>Create exams with duration, start time, end time, marks, and questions.</span>
+        </div>
+
+        <div class="feature">
+            <strong>📤 Upload Questions</strong>
+            <span>Add questions manually or upload multiple questions using Excel.</span>
+        </div>
+
+        <div class="feature">
+            <strong>🔗 Share Exam Link</strong>
+            <span>Generate a public link and share it with candidates.</span>
+        </div>
+
+        <div class="feature">
+            <strong>📊 View Results</strong>
+            <span>Track candidate details, scores, and submitted exam results.</span>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

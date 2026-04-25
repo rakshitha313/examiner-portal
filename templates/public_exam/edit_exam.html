@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Exam</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    background:linear-gradient(135deg,#0f172a,#1e293b,#312e81);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:30px 15px;
+}
+
+.container{
+    width:100%;
+    max-width:900px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:28px;
+    backdrop-filter:blur(18px);
+    box-shadow:0 25px 60px rgba(0,0,0,0.35);
+    padding:30px;
+}
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:24px;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.title h2{
+    color:white;
+    font-size:30px;
+    font-weight:800;
+    margin-bottom:6px;
+}
+
+.title p{
+    color:rgba(255,255,255,0.75);
+    font-size:14px;
+}
+
+.back-btn{
+    padding:11px 16px;
+    border-radius:14px;
+    background:rgba(255,255,255,0.1);
+    color:white;
+    text-decoration:none;
+    font-weight:700;
+    border:1px solid rgba(255,255,255,0.12);
+}
+
+.form-box{
+    background:white;
+    border-radius:22px;
+    padding:28px;
+}
+
+form p{
+    margin-bottom:16px;
+}
+
+form label{
+    display:block;
+    margin-bottom:8px;
+    color:#334155;
+    font-size:14px;
+    font-weight:600;
+}
+
+form input,
+form textarea,
+form select{
+    width:100%;
+    padding:13px 14px;
+    border:1px solid #cbd5e1;
+    border-radius:14px;
+    outline:none;
+    font-size:14px;
+    background:#f8fafc;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus{
+    border-color:#4f46e5;
+    background:white;
+    box-shadow:0 0 0 4px rgba(79,70,229,0.12);
+}
+
+.submit-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,#f59e0b,#f97316);
+    color:white;
+    font-size:15px;
+    font-weight:800;
+    cursor:pointer;
+    margin-top:8px;
+    box-shadow:0 12px 24px rgba(249,115,22,0.25);
+}
+
+.submit-btn:hover{
+    transform:translateY(-2px);
+}
+
+@media(max-width:700px){
+    .container{
+        padding:22px;
+    }
+
+    .form-box{
+        padding:20px;
+    }
+
+    .title h2{
+        font-size:24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="top">
+        <div class="title">
+            <h2>Edit Exam</h2>
+            <p>Update exam details for: {{ exam.title }}</p>
+        </div>
+
+        <a href="/dashboard/" class="back-btn">← Back</a>
+    </div>
+
+    <div class="form-box">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" class="submit-btn">Update Exam</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

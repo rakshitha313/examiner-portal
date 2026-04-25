@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Already Attempted</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    background: linear-gradient(135deg,#0f172a,#1e293b,#312e81);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:30px 15px;
+}
+
+.container{
+    width:100%;
+    max-width:700px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:30px;
+    backdrop-filter:blur(18px);
+    box-shadow:0 25px 60px rgba(0,0,0,0.35);
+    padding:30px;
+}
+
+.card{
+    background:white;
+    border-radius:24px;
+    padding:30px;
+    text-align:center;
+}
+
+/* ICON */
+.icon{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    background: linear-gradient(135deg,#f59e0b,#f97316);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:36px;
+    margin:0 auto 18px;
+    box-shadow:0 14px 30px rgba(249,115,22,0.3);
+}
+
+/* TEXT */
+h1{
+    font-size:28px;
+    font-weight:800;
+    color:#0f172a;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    font-size:14px;
+    color:#64748b;
+    margin-bottom:20px;
+}
+
+.exam-name{
+    font-size:20px;
+    font-weight:800;
+    color:#1e293b;
+    margin-bottom:20px;
+}
+
+/* ALERT BOX */
+.alert{
+    background:#fff7ed;
+    border:1px solid #fed7aa;
+    color:#9a3412;
+    padding:16px;
+    border-radius:14px;
+    margin-bottom:20px;
+    font-size:14px;
+}
+
+/* BUTTONS */
+.actions{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:12px 18px;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:700;
+    transition:0.25s;
+}
+
+.btn-primary{
+    background: linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:white;
+    box-shadow:0 12px 24px rgba(79,70,229,0.24);
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+}
+
+.btn-secondary{
+    background:#e2e8f0;
+    color:#0f172a;
+}
+
+.btn-secondary:hover{
+    background:#cbd5e1;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+    .card{padding:24px;}
+    h1{font-size:22px;}
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <div class="icon">⚠️</div>
+
+        <h1>Already Attempted</h1>
+
+        <div class="subtitle">
+            You have already taken this exam.
+        </div>
+
+        <div class="exam-name">
+            {{ exam.title }}
+        </div>
+
+        <div class="alert">
+            This exam allows only one attempt per user.
+        </div>
+
+        <div class="actions">
+            <a href="/exam/{{ exam.exam_code }}/result/" class="btn btn-primary">View Result</a>
+            <a href="/" class="btn btn-secondary">Go Home</a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

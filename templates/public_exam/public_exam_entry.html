@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Exam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Inter',sans-serif;
+            min-height:100vh;
+            background: linear-gradient(135deg, #0f172a, #1e293b, #312e81);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:30px 15px;
+        }
+
+        .container{
+            width:100%;
+            max-width:900px;
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            background:rgba(255,255,255,0.08);
+            border:1px solid rgba(255,255,255,0.12);
+            border-radius:28px;
+            overflow:hidden;
+            backdrop-filter:blur(18px);
+            box-shadow:0 25px 60px rgba(0,0,0,0.35);
+        }
+
+        .left{
+            padding:50px 40px;
+            color:white;
+            background:
+                linear-gradient(rgba(79,70,229,0.85),rgba(15,23,42,0.9)),
+                url('https://images.unsplash.com/photo-1519389950473-47ba0277781c');
+            background-size:cover;
+            background-position:center;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+        }
+
+        .left h1{
+            font-size:32px;
+            font-weight:800;
+            margin-bottom:16px;
+        }
+
+        .left p{
+            font-size:14px;
+            color:rgba(255,255,255,0.85);
+            line-height:1.7;
+        }
+
+        .right{
+            background:white;
+            padding:40px 30px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+
+        .form-box{
+            width:100%;
+            max-width:350px;
+        }
+
+        h2{
+            text-align:center;
+            margin-bottom:10px;
+            font-weight:800;
+            color:#0f172a;
+        }
+
+        .exam-info{
+            text-align:center;
+            font-size:13px;
+            color:#64748b;
+            margin-bottom:20px;
+        }
+
+        label{
+            font-size:13px;
+            font-weight:600;
+            color:#334155;
+            margin-bottom:6px;
+            display:block;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            border:1px solid #cbd5e1;
+            border-radius:12px;
+            margin-bottom:14px;
+            background:#f8fafc;
+            transition:0.2s;
+        }
+
+        input:focus{
+            border-color:#4f46e5;
+            background:white;
+            box-shadow:0 0 0 3px rgba(79,70,229,0.15);
+            outline:none;
+        }
+
+        .btn{
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:14px;
+            background: linear-gradient(135deg,#4f46e5,#7c3aed);
+            color:white;
+            font-weight:700;
+            cursor:pointer;
+            transition:0.2s;
+            box-shadow:0 12px 24px rgba(79,70,229,0.25);
+        }
+
+        .btn:hover{
+            transform:translateY(-2px);
+        }
+
+        @media(max-width:800px){
+            .container{
+                grid-template-columns:1fr;
+            }
+
+            .left{
+                display:none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="left">
+        <h1>{{ exam.title }}</h1>
+        <p>{{ exam.description }}</p>
+        <p style="margin-top:15px;"><strong>Duration:</strong> {{ exam.duration }} minutes</p>
+    </div>
+
+    <div class="right">
+        <div class="form-box">
+
+            <h2>Start Exam</h2>
+
+            <div class="exam-info">
+                Enter your details to begin
+            </div>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <label>Name</label>
+                <input type="text" name="name" required>
+
+                <label>Email</label>
+                <input type="email" name="email" required>
+
+                <label>Phone</label>
+                <input type="text" name="phone" required>
+
+                <button type="submit" class="btn">Start Exam</button>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
